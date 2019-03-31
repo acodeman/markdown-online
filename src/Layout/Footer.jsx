@@ -1,23 +1,16 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Row, Col} from 'antd';
 
 function Footer() {
-  return (
-    <footer id="footer" className="dark">
-      <Row className="bottom-bar">
-        <Col lg={6} sm={24}>
-          <div className="translate-button">
-          </div>
-        </Col>
-        <Col lg={18} sm={24}>
-          <span style={{ marginRight: 24 }}>
+    return (
+        <footer id="footer" className="dark">
+            <Row className="bottom-bar">
+            <span style={{textAlign: 'center', display: 'block'}}>
+            Markdown Online ©2019 Created by Ju Yuan
           </span>
-          <span style={{ marginRight: 12 }}></span>
-          <span style={{ marginRight: 12 }}></span>
-        </Col>
-      </Row>
-    </footer>
-  );
+            </Row>
+        </footer>
+    );
 }
 
 
