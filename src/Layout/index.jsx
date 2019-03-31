@@ -4,7 +4,6 @@ import { enquireScreen } from 'enquire-js';
 
 import Header from './Header';
 import Footer from './Footer';
-import Home from '../pages/Home'
 
 let isMobile;
 
@@ -28,7 +27,6 @@ class Layout extends React.PureComponent {
       <DocumentTitle title="Markdown Online">
         <div>
           <Header isMobile={this.state.isMobile} />
-          <Home isMobile={this.state.isMobile}/>
           <Footer />
         </div>
       </DocumentTitle>
