@@ -3,11 +3,8 @@ import DocumentTitle from 'react-document-title';
 import { enquireScreen } from 'enquire-js';
 
 import Header from './Header';
-import Banner from './Banner';
-import Page1 from './Page1';
-import Page2 from './Page2';
 import Footer from './Footer';
-import './static/style';
+import Home from '../pages/Home'
 
 let isMobile;
 
@@ -15,7 +12,7 @@ enquireScreen((b) => {
   isMobile = b;
 });
 
-class Home extends React.PureComponent {
+class Layout extends React.PureComponent {
   state = {
     isMobile,
   }
@@ -31,11 +28,7 @@ class Home extends React.PureComponent {
       <DocumentTitle title="Markdown Online">
         <div>
           <Header isMobile={this.state.isMobile} />
-          <div className="home-wrapper">
-            <Banner isMobile={this.state.isMobile} />
-            <Page1 isMobile={this.state.isMobile} />
-            <Page2 />
-          </div>
+          <Home isMobile={this.state.isMobile}/>
           <Footer />
         </div>
       </DocumentTitle>
@@ -43,4 +36,4 @@ class Home extends React.PureComponent {
   }
 }
 
-export default Home;
+export default Layout;

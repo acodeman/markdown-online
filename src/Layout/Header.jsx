@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Icon, Menu, Button, Popover } from 'antd';
+import { Row, Col, Icon, Menu, Popover } from 'antd';
 
 import { enquireScreen } from 'enquire-js';
 
@@ -63,7 +63,7 @@ class Header extends React.Component {
         <Row>
           <Col xxl={4} xl={5} lg={8} md={8} sm={24} xs={24}>
             <div id="logo" to="/">
-              <img src={require('./static/img/markdown_logo.svg')} alt="logo" />
+              <img src={require('../pages/Home/static/img/markdown_logo.svg')} alt="logo" />
               <span >Markdown Online</span>
             </div>
           </Col>
