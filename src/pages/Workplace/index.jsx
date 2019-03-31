@@ -1,57 +1,85 @@
 import React from 'react';
 import {
-    Layout, Menu, Breadcrumb, Icon,
+    HashRouter as Router, Route, Switch, Link, withRouter,
+} from 'react-router-dom';
+import {
+    Layout, Menu, Breadcrumb, Icon, Alert,
 } from 'antd';
+import WorkplaceManage from './WorkplaceManage';
+import DocManage from './DocManage';
+import RepositoryManage from './RepositoryManage';
+import TeamManage from './TeamManage';
 
-const { Content, Sider } = Layout;
+const {Content, Sider} = Layout;
+
+const routes = [
+    {
+        path: "/workplace",
+        icon: 'laptop',
+        menuName: '工作台',
+        component: WorkplaceManage,
+    }, {
+
+        path: "/workplace/docs",
+        icon: "file-markdown",
+        menuName: '文档',
+        component: DocManage,
+    }, {
+        path: "/workplace/repository",
+        icon: "project",
+        menuName: '知识库',
+        component: RepositoryManage,
+    }, {
+        path: "/workplace/team",
+        icon: "team",
+        menuName: '团队',
+        component: TeamManage,
+    }
+
+];
 
 
 class Workplace extends React.PureComponent {
 
     render() {
         return (
+
+            <Layout>
                 <Layout>
-                    <Layout>
-                        <Sider width={256} style={{background: '#fff'}}>
-                            <Menu
-                                onClick={this.handleClick}
-                                style={{width: 256}}
-                                defaultSelectedKeys={['docs']}
-                                mode="inline"
-                            >
-                                <Menu.Item key="workplace" >
-                                    <Icon type="laptop" />
-                                    工作台
+                    <Sider width={256} style={{background: '#fff'}}>
+                        <Menu
+                            onClick={this.handleClick}
+                            style={{width: 256}}
+                            defaultSelectedKeys={['laptop']}
+                            mode="inline"
+                        >
+                            {routes.map((route, i) => (
+                                <Menu.Item key={route.icon}>
+                                    <Link to={route.path}> <Icon type={route.icon}/>{route.menuName}</Link>
                                 </Menu.Item>
-                                <Menu.Item key="docs">
-                                    <Icon type="file-markdown" />
-                                    文档
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                    <Icon type="project" />
-                                    知识库
-                                </Menu.Item>
-                                <Menu.Item key="3">
-                                    <Icon type="team" />
-                                    团队
-                                </Menu.Item>
-                            </Menu>
-                        </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                <Breadcrumb.Item>List</Breadcrumb.Item>
-                                <Breadcrumb.Item>App</Breadcrumb.Item>
-                            </Breadcrumb>
-                            <Content style={{
-                                background: '#fff', padding: 24, margin: 0, minHeight: 280,
-                            }}
-                            >
-                                Content
-                            </Content>
-                        </Layout>
+                            ))}
+                        </Menu>
+                    </Sider>
+                    <Layout style={{padding: '0 24px 24px'}}>
+                        <Breadcrumb style={{ margin: '14px 0' }}>
+                            <Breadcrumb.Item>
+                                <Link to='/workplace'> <Icon type="laptop"/> 工作台</Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item href="">
+                                <Link to='/workplace/docs'> <Icon type="file-markdown"/> 文档</Link>
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Content style={{
+                            background: '#fff', padding: 24, margin: 0, minHeight: 280,
+                        }}
+                        >
+                            {routes.map((route, i) => (
+                                <Route path={route.path} exact component={route.component}/>
+                            ))}
+                        </Content>
                     </Layout>
                 </Layout>
+            </Layout>
         );
     }
 }

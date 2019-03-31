@@ -29,8 +29,8 @@ class Header extends React.Component {
                 <Menu.Item key="home">
                     <Link to="/">首页</Link>
                 </Menu.Item>
-                <Menu.Item key="docs">
-                    <Link to="/docs"><span>我的文档</span></Link>
+                <Menu.Item key="showdoc">
+                    <Link to="/showdoc"><span>我的文档</span></Link>
                 </Menu.Item>
                 <Menu.Item key="workplace">
                     <Link to="/workplace">工作台</Link>
@@ -73,7 +73,7 @@ class Header extends React.Component {
                     </Row>
                 </div>
                 <Route path="/" exact component={Home}/>
-                <Route path="/docs/" component={Document}/>
+                <Route path="/showdoc/" component={Document}/>
                 <Route path="/workplace/" component={Workplace}/>
             </Router>
         );
