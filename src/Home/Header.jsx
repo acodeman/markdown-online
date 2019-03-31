@@ -24,16 +24,16 @@ class Header extends React.Component {
           <a>首页</a>
         </Menu.Item>
         <Menu.Item key="docs">
-          <a><span>文档</span></a>
+          <a><span>我的文档</span></a>
         </Menu.Item>
         <Menu.Item key="components">
-          <a>组件</a>
+          <a>工作台</a>
         </Menu.Item>
         {
           menuMode === 'inline' && (
             <Menu.Item key="preview">
-              <a target="_blank" href="http://preview.pro.ant.design/" rel="noopener noreferrer">
-                预览
+              <a target="_blank" href="localhost:3000/" rel="noopener noreferrer">
+                工作台
               </a>
             </Menu.Item>
           )
@@ -69,18 +69,6 @@ class Header extends React.Component {
           </Col>
           <Col xxl={20} xl={19} lg={16} md={16} sm={0} xs={0}>
             <div className="header-meta">
-              <div id="preview">
-                <a
-                  id="preview-button"
-                  target="_blank"
-                  href="http://preview.pro.ant.design"
-                  rel="noopener noreferrer"
-                >
-                  <Button icon="eye-o">
-                    预览
-                  </Button>
-                </a>
-              </div>
               {menuMode === 'horizontal' ? <div id="menu">{menu}</div> : null}
             </div>
           </Col>

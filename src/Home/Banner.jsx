@@ -43,8 +43,8 @@ function Banner(props) {
           <GitHubButton
             key="github-button"
             type="stargazers"
-            namespace="ant-design"
-            repo="ant-design-pro"
+            namespace="acodeman"
+            repo="markdown-online"
           />
         </div>
       </QueueAnim>

@@ -18,7 +18,7 @@ function Page2() {
             </p>
             <div key="code1" className="home-code">
               <div>
-                $ <span>git clone</span> https://gitee.com/.codeman/markdown-online
+                $ <span>git clone</span> https://github.com/acodeman/markdown-online
               </div>
               <div>$ cd markdown-online</div>
               <div>$ npm install</div>
@@ -34,10 +34,10 @@ function Page2() {
               <a> 开发文档 </a>
               和
               <a> 常见问题 </a>， 如果未能解决，可以到 GitHub 上
-              <a href="https://gitee.com/.codeman/markdown-online/issues"> 进行提问 </a>。
+              <a href="https://github.com/acodeman/markdown-online/issues"> 进行提问 </a>。
             </p>
             <div key="button" style={{ marginTop: 88 }}>
-              <a href="https://gitee.com/.codeman/markdown-online" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/acodeman/markdown-online" target="_blank" rel="noopener noreferrer">
                 <Button type="primary">下载 Markdown Online</Button>
               </a>
             </div>

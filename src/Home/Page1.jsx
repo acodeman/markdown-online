@@ -192,7 +192,7 @@ class Page1 extends React.PureComponent {
               animation={{ translateY: 200, ease: 'linear', playScale: [0, 1.65] }}
               location="page1-wrapper"
             >
-              Feature
+
             </Parallax>
           )}
           <h2>它能为你做什么 ？</h2>
