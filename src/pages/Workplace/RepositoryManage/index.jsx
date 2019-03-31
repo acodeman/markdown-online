@@ -1,57 +1,180 @@
 import React from 'react';
-import {
-    Layout, Menu, Breadcrumb, Icon,
-} from 'antd';
-
-const { Content, Sider } = Layout;
+import { List,Card,Button,Icon} from 'antd';
+import styles from './Repository.less'
 
 
+const titles = [
+    'Alipay',
+    'Angular',
+    'Ant Design',
+    'Ant Design Pro',
+    'Bootstrap',
+    'React',
+    'Vue',
+    'Webpack',
+];
+const avatars = [
+    'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png', // Alipay
+    'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png', // Angular
+    'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png', // Ant Design
+    'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png', // Ant Design Pro
+    'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png', // Bootstrap
+    'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png', // React
+    'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png', // Vue
+    'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png', // Webpack
+];
+
+const avatars2 = [
+    'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/gaOngJwsRYRaVAuXXcmB.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/WhxKECPNujWoWEFNdnJE.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/psOgztMplJMGpVEqfcgF.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/ZpBqSxLxVEXfcUNoPKrz.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/laiEnJdGHVOhJrUShBaJ.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/UrQsqscbKEpNuJcvBZBu.png',
+];
+
+const covers = [
+    'https://gw.alipayobjects.com/zos/rmsportal/uMfMFlvUuceEyPpotzlq.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png',
+    'https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png',
+];
+const desc = [
+    '那是一种内在的东西， 他们到达不了，也无法触及的',
+    '希望是一个好东西，也许是最好的，好东西是不会消亡的',
+    '生命就像一盒巧克力，结果往往出人意料',
+    '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
+    '那时候我只会想自己想要什么，从不想自己拥有什么',
+];
+
+const user = [
+    '付小小',
+    '曲丽丽',
+    '林东东',
+    '周星星',
+    '吴加好',
+    '朱偏右',
+    '鱼酱',
+    '乐哥',
+    '谭小仪',
+    '仲尼',
+];
+
+
+function fakeList(count) {
+    const list = [];
+    for (let i = 0; i < count; i += 1) {
+        list.push({
+            id: `fake-list-${i}`,
+            owner: user[i % 10],
+            title: titles[i % 8],
+            avatar: avatars[i % 8],
+            cover: parseInt(i / 4, 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
+            status: ['active', 'exception', 'normal'][i % 3],
+            percent: Math.ceil(Math.random() * 50) + 50,
+            logo: avatars[i % 8],
+            href: 'https://ant.design',
+            updatedAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i),
+            createdAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i),
+            subDescription: desc[i % 5],
+            description:
+                '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。',
+            activeUser: Math.ceil(Math.random() * 100000) + 100000,
+            newUser: Math.ceil(Math.random() * 1000) + 1000,
+            star: Math.ceil(Math.random() * 100) + 100,
+            like: Math.ceil(Math.random() * 100) + 100,
+            message: Math.ceil(Math.random() * 10) + 10,
+            content:
+                '段落示意：蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。',
+            members: [
+                {
+                    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ZiESqWwCXBRQoaPONSJe.png',
+                    name: '曲丽丽',
+                    id: 'member1',
+                },
+                {
+                    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/tBOxZPlITHqwlGjsJWaF.png',
+                    name: '王昭君',
+                    id: 'member2',
+                },
+                {
+                    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/sBxjgqiuHMGRkIjqlQCd.png',
+                    name: '董娜娜',
+                    id: 'member3',
+                },
+            ],
+        });
+    }
+
+    return list;
+}
 class Repository extends React.PureComponent {
 
     render() {
+        const list = fakeList(50);
+        const content = (
+            <div className={styles.pageHeaderContent}>
+                <p>
+                    段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，
+                    提供跨越设计与开发的体验解决方案。
+                </p>
+                <div className={styles.contentLink}>
+                    <a>
+                        <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg" />{' '}
+                        快速开始
+                    </a>
+                    <a>
+                        <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" />{' '}
+                        产品简介
+                    </a>
+                    <a>
+                        <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" />{' '}
+                        产品文档
+                    </a>
+                </div>
+            </div>
+        );
+
+        const extraContent = (
+            <div className={styles.extraImg}>
+                <img
+                    alt="这是一个标题"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png"
+                />
+            </div>
+        );
         return (
-                <Layout>
-                    <Layout>
-                        <Sider width={256} style={{background: '#fff'}}>
-                            <Menu
-                                onClick={this.handleClick}
-                                style={{width: 256}}
-                                defaultSelectedKeys={['docs']}
-                                mode="inline"
-                            >
-                                <Menu.Item key="workplace" >
-                                    <Icon type="laptop" />
-                                    工作台RepositoryRepositoryRepositoryRepository
-                                </Menu.Item>
-                                <Menu.Item key="docs">
-                                    <Icon type="file-markdown" />
-                                    文档RepositoryRepositoryRepositoryRepository
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                    <Icon type="project" />
-                                    知识库
-                                </Menu.Item>
-                                <Menu.Item key="3">
-                                    <Icon type="team" />
-                                    团队
-                                </Menu.Item>
-                            </Menu>
-                        </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                <Breadcrumb.Item>List</Breadcrumb.Item>
-                                <Breadcrumb.Item>App</Breadcrumb.Item>
-                            </Breadcrumb>
-                            <Content style={{
-                                background: '#fff', padding: 24, margin: 0, minHeight: 280,
-                            }}
-                            >
-                                Content
-                            </Content>
-                        </Layout>
-                    </Layout>
-                </Layout>
+
+                <div className={styles.cardList}>
+                    <List
+                        rowKey="id"
+                        grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
+                        dataSource={list}
+                        renderItem={item =>
+                            item ? (
+                                <List.Item key={item.id}>
+                                    <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                                        <Card.Meta
+                                            avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
+                                            title={<a>{item.title}</a>}
+                                            description={item.description}
+                                        />
+                                    </Card>
+                                </List.Item>
+                            ) : (
+                                <List.Item>
+                                    <Button type="dashed" className={styles.newButton}>
+                                        <Icon type="plus" /> 新建产品
+                                    </Button>
+                                </List.Item>
+                            )
+                        }
+                    />
+                </div>
         );
     }
 }

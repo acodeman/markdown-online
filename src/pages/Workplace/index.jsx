@@ -18,18 +18,18 @@ const routes = [
         icon: 'laptop',
         menuName: '工作台',
         component: WorkplaceManage,
+    },  {
+        path: "/workplace/repository",
+        icon: "project",
+        menuName: '知识库',
+        component: RepositoryManage,
     }, {
 
         path: "/workplace/docs",
         icon: "file-markdown",
         menuName: '文档',
         component: DocManage,
-    }, {
-        path: "/workplace/repository",
-        icon: "project",
-        menuName: '知识库',
-        component: RepositoryManage,
-    }, {
+    },{
         path: "/workplace/team",
         icon: "team",
         menuName: '团队',
