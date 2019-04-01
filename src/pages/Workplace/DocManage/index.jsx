@@ -1,57 +1,80 @@
 import React from 'react';
-import {
-    Layout, Menu, Breadcrumb, Icon,
-} from 'antd';
+import {Table, Button,Layout} from 'antd';
 
-const { Content, Sider } = Layout;
-
+const {Content} = Layout;
+const columns = [{
+    title: 'Name',
+    dataIndex: 'name',
+}, {
+    title: 'Age',
+    dataIndex: 'age',
+}, {
+    title: 'Address',
+    dataIndex: 'address',
+}];
+const data = [];
+for (let i = 0; i < 46; i++) {
+    data.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age: 32,
+        address: `London, Park Lane no. ${i}`,
+    });
+}
 
 class DocManage extends React.PureComponent {
 
+    state = {
+        selectedRowKeys: [], // Check here to configure the default column
+        loading: false,
+    };
+
+    start = () => {
+        this.setState({loading: true});
+        // ajax request after empty completing
+        setTimeout(() => {
+            this.setState({
+                selectedRowKeys: [],
+                loading: false,
+            });
+        }, 1000);
+    }
+    onSelectChange = (selectedRowKeys) => {
+        console.log('selectedRowKeys changed: ', selectedRowKeys);
+        this.setState({selectedRowKeys});
+    }
+
+
     render() {
+        const {loading, selectedRowKeys} = this.state;
+        const rowSelection = {
+            selectedRowKeys,
+            onChange: this.onSelectChange,
+        };
+        const hasSelected = selectedRowKeys.length > 0;
+
         return (
-                <Layout>
-                    <Layout>
-                        <Sider width={256} style={{background: '#fff'}}>
-                            <Menu
-                                onClick={this.handleClick}
-                                style={{width: 256}}
-                                defaultSelectedKeys={['docs']}
-                                mode="inline"
-                            >
-                                <Menu.Item key="workplace" >
-                                    <Icon type="laptop" />
-                                    工作台DocManageDocManageDocManageDocManageDocManageDocManage
-                                </Menu.Item>
-                                <Menu.Item key="docs">
-                                    <Icon type="file-markdown" />
-                                    文档
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                    <Icon type="project" />
-                                    知识库
-                                </Menu.Item>
-                                <Menu.Item key="3">
-                                    <Icon type="team" />
-                                    团队
-                                </Menu.Item>
-                            </Menu>
-                        </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                <Breadcrumb.Item>List</Breadcrumb.Item>
-                                <Breadcrumb.Item>App</Breadcrumb.Item>
-                            </Breadcrumb>
-                            <Content style={{
-                                background: '#fff', padding: 24, margin: 0, minHeight: 280,
-                            }}
-                            >
-                                Content
-                            </Content>
-                        </Layout>
-                    </Layout>
-                </Layout>
+            <Content style={{
+                background: '#fff'
+            }}
+            >
+            <div>
+                <div style={{marginBottom: 16}}>
+                    <Button
+                        type="primary"
+                        onClick={this.start}
+                        disabled={!hasSelected}
+                        loading={loading}
+                    >
+                        Reload
+                    </Button>
+                    <span style={{marginLeft: 8}}>
+                        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+                    </span>
+                </div>
+                <Table rowSelection={rowSelection} columns={columns} dataSource={data}/>
+            </div>
+            </Content>
         );
     }
 }

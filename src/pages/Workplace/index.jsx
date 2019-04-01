@@ -69,14 +69,9 @@ class Workplace extends React.PureComponent {
                                 <Link to='/workplace/docs'> <Icon type="file-markdown"/> 文档</Link>
                             </Breadcrumb.Item>
                         </Breadcrumb>
-                        <Content style={{
-                            background: '#fff', padding: 24, margin: 0, minHeight: 280,
-                        }}
-                        >
-                            {routes.map((route, i) => (
-                                <Route path={route.path} exact component={route.component}/>
-                            ))}
-                        </Content>
+                        {routes.map((route, i) => (
+                            <Route path={route.path} exact component={route.component}/>
+                        ))}
                     </Layout>
                 </Layout>
             </Layout>
